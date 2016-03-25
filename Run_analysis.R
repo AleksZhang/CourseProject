@@ -4,14 +4,14 @@ library(tidyr)
 library(reshape2)
 
 ##Loading data
-test_subj <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\test\\subject_test.txt")
-test_data <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\test\\X_test.txt")
-test_names <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\test\\y_test.txt")
-train_subj <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\train\\subject_train.txt")
-train_data <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\train\\X_train.txt")
-train_names <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\train\\y_train.txt")
-act_labels <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\activity_labels.txt")
-features <- read.table("D:\\R\\assignment4\\UCI HAR Dataset\\features.txt")
+test_subj <- read.table("subject_test.txt")
+test_data <- read.table("X_test.txt")
+test_names <- read.table("y_test.txt")
+train_subj <- read.table("subject_train.txt")
+train_data <- read.table("X_train.txt")
+train_names <- read.table("y_train.txt")
+act_labels <- read.table("activity_labels.txt")
+features <- read.table("features.txt")
 
 ##Loading datasets
 test_df <- cbind.data.frame(test_subj, c(rep("test", nrow(test_subj))), test_names, test_data) 
