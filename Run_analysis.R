@@ -13,7 +13,7 @@ train_names <- read.table("y_train.txt")
 act_labels <- read.table("activity_labels.txt")
 features <- read.table("features.txt")
 
-##Loading datasets
+##Creating datasets
 test_df <- cbind.data.frame(test_subj, c(rep("test", nrow(test_subj))), test_names, test_data) 
 colnames(test_df) <- 1:ncol(test_df)
 train_df <- cbind.data.frame(train_subj, c(rep("train", nrow(train_subj))), train_names, train_data) 
