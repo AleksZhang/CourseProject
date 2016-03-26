@@ -1,7 +1,7 @@
 #Samsung data codebook
 
 ##1. Samsung_data description
-__I just want to say that English is not my native language, and I understood the objective as we need to extract ALL mean and standard deviation variables, INCLUDING dimensional ones__
+_I just want to say, that English is not my native language, and I understood the objective as we need to extract ALL mean and standard deviation variables, INCLUDING dimensional ones_
 * The array contains 76 variables and 180 observations
 * Variables are:
   - id - subject id
