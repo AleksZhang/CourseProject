@@ -7,6 +7,7 @@ _I just want to say, that English is not my native language, and I understood th
   - id - subject id
   - dataset - type of the sample (test or train)
   - activity - activity performed when measurement had been taken
+
 **(x-y-z) in variables name means that we need to put one of these characters at the end of variable to get the dimension needed.**
   - tbodyaccmean(x-y-z)
   - tgravityaccmean(x-y-z)
