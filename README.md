@@ -31,6 +31,7 @@ act_labels <- read.table("activity_labels.txt")
 features <- read.table("features.txt")
 ```
 **2) Then we bind different files to get two arrays, test and train respectively.**
+
 ```
 test_df <- cbind.data.frame(test_subj, c(rep("test", nrow(test_subj))), test_names, test_data) 
 colnames(test_df) <- 1:ncol(test_df)
@@ -47,6 +48,7 @@ and belonging to a corresponding dataset is a part of information.
 `colnames(test/train_df) <- 1:ncol(test/train_df)` is needed to unify column nmes for the following binding.
 
 **3) The following step is creating the merged dataset.**
+
 ```
 merged_df <- rbind.data.frame(test_df, train_df)
 colnames(merged_df) <- c("id", "dataset", "activity", as.character(features$V2)) 
@@ -62,21 +64,24 @@ Column names for merged_df are:
 - as names containing in "features" file are not of appropriate format, we need to use `make.names()`
 
 **4) Extracting the variables needed.**
+
 ```
 extr_data <- select(merged_df, id, activity, dataset, matches("mean"), matches("std")) %>%
   select(-matches("freq"))
-  ```
+```
   
 We need only mean and standard deviation columns, not mean frequency.
   
 **5) Giving names to activities.**
+
 ```
 extr_data$activity <- factor(extr_data$activity, 
       levels = 1:6,
       labels = as.character(act_labels$V2))
-      ```
-      
+```
+
 **6) Reshaping data.**
+
 ```
 molten <- melt(extr_data, id = c("id", "activity", "dataset"))
 fin_data <- dcast(molten, formula = id + dataset + activity ~ variable, fun = mean)
@@ -85,11 +90,12 @@ fin_data <- dcast(molten, formula = id + dataset + activity ~ variable, fun = me
 We want to leave as ID columns the following data:
 * ID of the experiment subject
 * Type of the sample the subject belongs to (test or train)
-* activity performed by the subject.
+* Activity performed by the subject.
 
 As we want to get mean values for every measurement for every activity, we use `mean()` as a function for `dcast()`.
 
 **7) Cleaning column names of the final data**
+
 ```
 names(fin_data) <-  gsub("\\.", "", names(fin_data)) 
 names(fin_data) <- tolower(names(fin_data))
@@ -101,6 +107,7 @@ names(fin_data) <-  gsub("bodybody", "body", names(fin_data))
 * remove repeating words from the column names
 
 **8) And owr final step is saving the data on the hard drive.**
+
 ```
 write.table(fin_data, "Samsung_data.txt", row.names = FALSE)
 ```
